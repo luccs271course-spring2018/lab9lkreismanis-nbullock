@@ -30,10 +30,11 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public int size() {
-    // TODO add the sizes of all the chains
+    // DONE add the sizes of all the chains
     int result = 0;
-
-
+    for(int i = 0; i < tableSize; i++){
+      result += table(i).size();
+    }
     return result;
   }
 
@@ -46,15 +47,13 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public boolean containsKey(final Object key) {
     // TODO follow basic approach of remove below (though this will be much simpler)
     final int index = calculateIndex(key);
-
-
-    return false;
+    if(table[index] != null){
+    return true;
   }
 
   @Override
   public boolean containsValue(final Object value) {
     // TODO follow basic approach of remove below (though this will be much simpler)
-
 
     return false;
   }
@@ -63,8 +62,14 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public V get(final Object key) {
     // TODO follow basic approach of remove below (though this will be simpler)
     final int index = calculateIndex(key);
-
-
+    if (index < 0) 
+        index += table.length(); 
+    if (table[index] == null) 
+        return null;
+    for (Entry<K, V> nextItem : table[index]) { 
+        if (nextItem.getKey().equals(key)) 
+            return nextItem.getValue(); 
+    } 
     return null;
   }
 
@@ -72,9 +77,21 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public V put(final K key, final V value) {
     // TODO follow basic approach of remove below (this will be similar)
     final int index = calculateIndex(key);
-
-
-    return null;
+    if(index < 0){
+      index += table.length; 
+    }
+    if(table[index] == null) { 
+        table[index] = new LinkedList<>(); 
+    } 
+    for (Entry<K, V> nextItem : Table[index]){
+      if(nextItem.getKey().equals(key)){
+        V oldVal = nextItem.getValue();
+        nextItem.setValue(value);
+        return oldVal;
+      }
+    }
+    table[index].addFirst(new Entry<>(key, value)); 
+    return null; 
   }
 
   @Override
