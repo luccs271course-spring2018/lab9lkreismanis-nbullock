@@ -33,7 +33,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     // DONE add the sizes of all the chains
     int result = 0;
     for(int i = 0; i < tableSize; i++){
-      result += table(i).size();
+      result += table[i].size();
     }
     return result;
   }
