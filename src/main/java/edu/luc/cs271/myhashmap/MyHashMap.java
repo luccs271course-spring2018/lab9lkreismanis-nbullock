@@ -146,6 +146,15 @@ public class MyHashMap<K, V> implements Map<K, V> {
     final Set<K> result = new HashSet<>();
     // TODO populate the set
     
+    for(int i = 0; i < DEFAULT_TABLE_SIZE; i++){
+      final Iterator<Entry<K, V>> counter = table.get(i).iterator();
+      while (counter.hasNext()){
+        Entry<K, V> temp = counter.next();
+        result.add(temp.getKey());
+        
+      }
+    }
+    
 
     return Collections.unmodifiableSet(result);
   }
