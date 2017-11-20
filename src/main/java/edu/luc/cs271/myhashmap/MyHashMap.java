@@ -45,7 +45,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public boolean containsKey(final Object key) {
-    // TODO follow basic approach of remove below (though this will be much simpler)
+    // DONE follow basic approach of remove below (though this will be much simpler)
     final int index = calculateIndex(key);
     final Iterator<Entry<K, V>> iter = table.get(index).iterator();
       while(iter.hasNext()){
@@ -59,7 +59,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public boolean containsValue(final Object value) {
-    // TODO follow basic approach of remove below (though this will be much simpler)
+    // DONE follow basic approach of remove below (though this will be much simpler)
     final int index = calculateIndex(value);
     final Iterator<Entry<K, V>> iter = table.get(index).iterator();
       while(iter.hasNext()){
@@ -73,7 +73,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public V get(final Object key) {
-    // TODO follow basic approach of remove below (though this will be simpler)
+    // DONE follow basic approach of remove below (though this will be simpler)
     final int index = calculateIndex(key);
     final Iterator<Entry<K, V>> iter = table.get(index).iterator();
     while(iter.hasNext()){
@@ -87,7 +87,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
   @Override
   public V put(final K key, final V value) {
-    // TODO follow basic approach of remove below (this will be similar)
+    // DONE follow basic approach of remove below (this will be similar)
     final int index = calculateIndex(key);
     final Iterator<Entry<K, V>> iter = table.get(index).iterator();
     while(iter.hasNext()){
@@ -117,6 +117,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
         return oldValue;
       }
     }
+    return null; 
   }
 
   @Override
@@ -126,7 +127,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
        final Iterator<Entry<K, V>> iter = table.get(i).iterator();
        while(iter.hasNext()){
          Entry<K, V> newEntry =iter.next();
-         this.Map.put(newEntry.getKey(), newEntry.getValue());
+         this.put(newEntry.getKey(), newEntry.getValue());
        }
      }
   }
