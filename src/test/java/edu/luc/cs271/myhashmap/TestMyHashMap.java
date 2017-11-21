@@ -101,7 +101,7 @@ public class TestMyHashMap {
     fixture2.putAll(fixture);
     assertEquals(fixture, fixture2);
   }
-
+  
   private void populateFixture(final Map<String, Integer> fixture) {
     fixture.put("hello", 3);
     fixture.put("world", 4);
