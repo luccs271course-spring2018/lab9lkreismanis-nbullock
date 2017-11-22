@@ -47,10 +47,16 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public boolean containsKey(final Object key) {
     // DONE follow basic approach of remove below (though this will be much simpler)
     final int index = calculateIndex(key);
-    final Iterator<Entry<K, V>> iter = table.get(index).iterator();
+    /*final Iterator<Entry<K, V>> iter = table.get(index).iterator();
     while (iter.hasNext()) {
       final Entry<K, V> newEntry = iter.next();
       if (newEntry.getKey().equals(key)) {
+        return true;
+      }
+    }
+    return false;*/
+    for(Entry<K, V> newEntry : table.get(index)){
+      if(newEntry.getKey().equals(key)){
         return true;
       }
     }
@@ -60,14 +66,21 @@ public class MyHashMap<K, V> implements Map<K, V> {
   @Override
   public boolean containsValue(final Object value) {
     // DONE follow basic approach of remove below (though this will be much simpler)
-    final int index = calculateIndex(value);
-    final Iterator<Entry<K, V>> iter = table.get(index).iterator();
+    /*final Iterator<Entry<K, V>> iter = table.get(index).iterator();
     while (iter.hasNext()) {
       final Entry<K, V> newEntry = iter.next();
       if (newEntry.getValue().equals(value)) {
         return true;
       }
     }
+    return false;*/
+     for(List<Entry<K, V>> curr : table){
+       for(Entry<K, V> newEntry : curr){
+        if(newEntry.getValue().equals(value)){
+          return true;
+       }
+      }
+     }
     return false;
   }
 
@@ -90,21 +103,15 @@ public class MyHashMap<K, V> implements Map<K, V> {
   public V put(final K key, final V value) {
     // DONE follow basic approach of remove below (this will be similar)
     final int index = calculateIndex(key);
-    final Iterator<Entry<K, V>> iter = table.get(index).iterator();
-    while (iter.hasNext()) {
-      final Entry<K, V> newEntry = iter.next();
+    
+    for (Entry<K, V> newEntry : table.get(index)) {
       if (newEntry.getKey().equals(key)) {
-        if (newEntry.getValue() != null) {
-          newEntry.setValue(value);
-          return newEntry.getValue();
-        }
-        else {
-          newEntry.setValue(value);
-          return null;
-        }
+        V oldValue = newEntry.getValue();
+        newEntry.setValue(value);
+        return oldValue;
       }
     }
-
+    table.get(index).add(0, new AbstractMap.SimpleEntry<K, V>(key, value));
     return null;
   }
 
@@ -210,11 +217,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
       return false;
     } else {
       // DONE simply compare the entry sets
-      if (containsKey(that) || containsValue(that)) {
-        return true;
-      } else {
-        return false;
-      }
+     return this.entrySet().equals(((Map) that).entrySet());
     }
   }
 
