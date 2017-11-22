@@ -3,9 +3,9 @@
 
 1. Try using a TreeMap and a HashMap instead of MyHashMap.
     1. a. Are the resulting word frequencies any different?
-    - No, the resulting word frequencies are not any different.
+    - Yes, the word frequences for MyHashMap were different. It did not include pronouns.TreeMap and HashMap included pronouns.
     2. b. Is the time performance any different? If so, how would you rank the three implementations (in increasing order of time complexity)?
-    - MyHashMap had more efficient time perfomace than HashMap. Ranking the three implemetaions, MyHashMap is most effiecient followed by HashMap and Tree Map.
+    - MyHashMap had the worst performance. TreeMap had the best and HashMap followed. 
 
 2. How are % and Math.floorMod different? Which works more reliably for computing a hash table index?
 - % and Math.floorMod are different by % simply returning the remainder of an expression, while .floorMod divides the expression and then maps the number to the nearest lower integer. .floorMod works more reliably for computing a hash table index.
